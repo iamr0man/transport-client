@@ -1,4 +1,4 @@
-import { ITransports } from "@/infra/gateway/transport/types/transports.types.ts";
+import { ITransports } from "@/modules/transport/types/transports.types.ts";
 
 export namespace IRoutes {
 	export namespace Enum {
@@ -23,4 +23,6 @@ export namespace IRoutes {
 	}
 
 	export type RawModel = Omit<Model, 'id'>
+
+	export type ModelWithRelation = Model & { transport: ITransports.Model }
 }

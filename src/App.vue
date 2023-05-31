@@ -1,22 +1,37 @@
 <template>
-    <RouterView />
+    <Suspense>
+        <template #default>
+            <RouterView v-slot="{ Component }">
+                <Sidebar>
+                    <transition name="scale">
+                        <component :is="Component" />
+                    </transition>
+                    <Notification />
+                </Sidebar>
+            </RouterView>
+        </template>
+        <template #fallback>
+            <span>Loading...</span>
+        </template>
+    </Suspense>
 </template>
 
 <script setup lang="ts">
+import Sidebar from "@/shared/components/Sidebar.vue";
+import { transportGateway } from "@/modules/transport/gateway/transport.gateway.ts";
+import Notification from "@/modules/notification/components/Notification.vue";
 
+transportGateway.getTransports()
 </script>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<style>
+.scale-enter-active,
+.scale-leave-active {
+    transition: all 0.5s ease;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.scale-enter-from,
+.scale-leave-to {
+    opacity: 0;
+    transform: scale(0.9);
 }
 </style>

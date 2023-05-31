@@ -1,3 +1,5 @@
+import { IRoutes } from "@/modules/route/types/route.types.ts";
+
 export namespace ITransports {
 	export namespace Enum {
 
@@ -7,7 +9,7 @@ export namespace ITransports {
 		}
 		export enum Type {
 			TRUCK = 'TRUCK',
-			PLAN = 'PLAN',
+			PLANE = 'PLANE',
 			TRAIN = 'TRAIN',
 			SHIP = 'SHIP',
 		}
@@ -15,13 +17,15 @@ export namespace ITransports {
 
 	export interface Model {
 		id: number
-		licensePlate: string | null
+		licensePlate: string
 		status: Enum.Status
-		model: string | null
-		purchaseDate: Date | null
-		mileage: number | null
+		model: string
+		purchaseDate: Date
+		mileage: number
 		type: Enum.Type;
 	}
 
 	export type RawModel = Omit<Model, 'id'>
+
+	export type ModelWithRelation = Model & { route: IRoutes.Model[] }
 }

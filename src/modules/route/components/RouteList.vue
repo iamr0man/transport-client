@@ -1,27 +1,26 @@
 <template>
-  <ContainerWrapper>
-    <ul class="mx-auto max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-      <RouteListItem
-        v-for="route in routeList"
-        :key="route.id"
-        :route="route"
-      />
-    </ul>
-  </ContainerWrapper>
+    <div>
+      <div class="mx-auto grid grid-cols-2 gap-6 divide-y divide-gray-200 dark:divide-gray-700">
+        <RouteListItem
+          v-for="route in routeList"
+          :key="route.id"
+          :route="route"
+          @update-list="getRoutes"
+        />
+      </div>
+      <BaseButton class="mt-6" @click="goToCreateRoute">Create route</BaseButton>
+    </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 import RouteListItem from "@/modules/route/components/RouteListItem.vue";
-import { routeGateway } from "@/infra/gateway/route/route.gateway.ts";
-import { IRoutes } from "@/infra/gateway/route/types/route.types.ts";
-import ContainerWrapper from "@/shared/components/ContainerWrapper.vue";
+import BaseButton from "@/shared/components/BaseButton.vue";
+import { useRouter } from "vue-router";
+import { useRoutes } from "@/modules/route/composable/useRoutes.ts";
 
-const routeList = ref<IRoutes.Model[]>([])
+const router = useRouter();
 
-routeGateway.getRoutes().then(payload => {
-	if (payload.isSuccess) {
-    routeList.value = payload.response
-  }
-})
+const goToCreateRoute = () => router.push('/route-form/create')
+
+const { routeList, getRoutes } = useRoutes()
 </script>

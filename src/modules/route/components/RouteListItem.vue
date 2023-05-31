@@ -1,44 +1,34 @@
 <template>
-    <li class="pt-3 pb-0 sm:pt-4">
-        <div class="flex items-center space-x-4">
-            <div class="flex-shrink-0">
-                <component :is="iconComponent" class="w-6 h-6" />
-            </div>
-            <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                    {{ route.cityStart }} | {{ route.cityEnd }}
-                </p>
-                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                    {{ new Date(route.sendingDate).toLocaleDateString() }} | {{ new Date(route.deliveryDate).toLocaleDateString() }}
-                </p>
-            </div>
-            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                {{ route.revenue }}
-            </div>
-        </div>
-    </li>
+    <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
+            <li class="mr-2">
+                <button type="button" role="tab" :class="{ 'dark:text-blue-500': !showTransportTab }" class="inline-block p-4 rounded-tl-lg dark:bg-gray-800 dark:hover:bg-gray-700" @click="showTransportTab = false">Route</button>
+            </li>
+            <li class="mr-2">
+                <button type="button" role="tab" :class="{ 'dark:text-blue-500': showTransportTab }" class="inline-block p-4 dark:hover:bg-gray-700" @click="showTransportTab = true">Transport</button>
+            </li>
+        </ul>
+        <RouteCardItem v-if="!showTransportTab" :route="route" @update-list="emits('updateList')" />
+        <TransportListItem v-else :transport="route.transport" @update-list="emits('updateList')" />
+    </div>
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
-import { IRoutes } from "@/infra/gateway/route/types/route.types.ts";
-import IconArrowRotate from "@/shared/icons/IconArrowRotate.vue";
-import IconCheck from "@/shared/icons/IconCheck.vue";
+import { ref } from "vue";
+import TransportListItem from "@/modules/transport/components/TransportCardItem.vue";
+import { IRoutes } from "@/modules/route/types/route.types.ts";
+import RouteCardItem from "@/modules/route/components/RouteCardItem.vue";
 
 interface Props {
-    route: IRoutes.Model
+    route: IRoutes.ModelWithRelation
 }
 
-const props = defineProps<Props>()
+interface Events {
+    (e: 'updateList'): void;
+}
 
-const iconComponent = computed(() => {
-    switch (props.route.status) {
-        case IRoutes.Enum.Status.PROCESSING:
-            return IconArrowRotate;
-        case IRoutes.Enum.Status.COMPLETED:
-            return IconCheck;
-        default:
-            return IconArrowRotate;
-    }
-})
+defineProps<Props>()
+const emits = defineEmits<Events>()
+
+const showTransportTab = ref(false);
 </script>
