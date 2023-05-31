@@ -1,6 +1,6 @@
 <template>
   <TransportForm
-    :transport-data="transportData"
+    v-model="transportData"
     :loading="loading"
     @submit="updateTransport"
   />
@@ -31,7 +31,7 @@ if (transportResponse.isSuccess) {
 const updateTransport = async () => {
   loading.value = true
 
-  const { id, route, ...payload } = transportData.value
+  const { id, route: routes, ...payload } = transportData.value
   const { isSuccess } = await transportGateway.updateTransportById(id, payload)
 
   loading.value = false;

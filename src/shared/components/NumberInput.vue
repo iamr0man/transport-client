@@ -1,7 +1,7 @@
 <template>
   <BaseInput
-    v-model="model"
     :id="id"
+    v-model="model"
     :label="label"
     :placeholder="placeholder"
     type="number"

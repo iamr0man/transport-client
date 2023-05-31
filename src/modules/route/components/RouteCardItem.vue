@@ -1,5 +1,5 @@
 <template>
-    <div class="p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="services" role="tabpanel" aria-labelledby="services-tab">
+    <div id="services" class="p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" role="tabpanel" aria-labelledby="services-tab">
         <div class="flex justify-between">
             <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{ route.status }}</h2>
             <div class="flex gap-1">

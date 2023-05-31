@@ -1,8 +1,8 @@
 <template>
     <component
+        :is="toastComponent"
         v-show="notificationStore.show"
         class="fixed bottom-5 right-5"
-        :is="toastComponent"
         @close="notificationStore.show = false"
     >{{ notificationStore.message }}
     </component>

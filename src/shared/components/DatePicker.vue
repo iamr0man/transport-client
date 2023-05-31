@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+// Library has no ts support
 // @ts-expect-error
 import Datepicker from 'flowbite-datepicker/Datepicker';
 

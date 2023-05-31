@@ -4,15 +4,15 @@
         @submit.prevent="emits('submit')"
     >
         <div class="grid gap-6 mb-6 md:grid-cols-2">
-            <TextInput v-model="routeData.cityStart" id="cityStart" label="City start" placeholder="Kyiv" />
-            <TextInput v-model="routeData.cityEnd" id="cityEnd" label="City end" placeholder="Odessa" />
-            <NumberInput v-model="routeData.distanceBetweenCities" id="distanceBetweenCities" label="Distance between cities" placeholder="477" />
-            <BaseSelect v-model="routeData.status" id="status" :options="statusOptions" label="Select status" placeholder="Status" />
+            <TextInput id="cityStart" v-model="routeData.cityStart" label="City start" placeholder="Kyiv" />
+            <TextInput id="cityEnd" v-model="routeData.cityEnd" label="City end" placeholder="Odessa" />
+            <NumberInput id="distanceBetweenCities" v-model="routeData.distanceBetweenCities" label="Distance between cities" placeholder="477" />
+            <BaseSelect id="status" v-model="routeData.status" :options="statusOptions" label="Select status" placeholder="Status" />
             <DatePicker v-model="routeData.sendingDate" title="Sending date" />
             <DatePicker v-model="routeData.deliveryDate" title="Delivery date" />
-            <NumberInput v-model="routeData.revenue" id="revenue" label="Revenue" placeholder="100000$" />
-            <BaseSelect v-model="routeData.transportType" id="transportType" :options="transportTypeOptions" label="Select transport type" placeholder="Transport type" />
-            <BaseSelect v-model="routeData.transportId" class="col-span-2" id="transportId" :options="transportOptions" label="Select transport" placeholder="Transport" />
+            <NumberInput id="revenue" v-model="routeData.revenue" label="Revenue" placeholder="100000$" />
+            <BaseSelect id="transportType" v-model="routeData.transportType" :options="transportTypeOptions" label="Select transport type" placeholder="Transport type" />
+            <BaseSelect id="transportId" v-model="routeData.transportId" class="col-span-2" :options="transportOptions" label="Select transport" placeholder="Transport" />
         </div>
 
         <BaseButton :loading="loading" :disabled="loading || !requiredFieldAreFilled" type="submit">Submit</BaseButton>

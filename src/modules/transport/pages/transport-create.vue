@@ -1,6 +1,6 @@
 <template>
   <TransportForm
-    :transport-data="transportData"
+    v-model="transportData"
     :loading="loading"
     @submit="createTransport"
   />
@@ -30,8 +30,6 @@ const transportData = ref<Omit<ITransports.ModelWithRelation, 'id'>>(baseTranspo
 const loading = ref(false)
 
 const createTransport = async () => {
-	const loading = ref(false)
-
   loading.value = true
 
   const { isSuccess } = await transportGateway.createTransport(transportData.value)

@@ -1,18 +1,49 @@
-# Vue 3 + TypeScript + Vite
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/_2xjYeZK)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# 🔍Опис проекту
 
-## Recommended IDE Setup
+Проект містить веб-додаток для контролю маршрутів та перегляду особистого транспорту. Складається зі списку всіх маршрутів, сторінки списку трансопрту.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## 🎥 Функціонал
 
-## Type Support For `.vue` Imports in TS
+Впровадженно функціонал, який дозволяє створювати, редагувати та видаляти як маршрути так і транспорт. Користовач може призначити вільний транспорт на доступний маршрут.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+Під час створення/редагування маршруту - при виборі типу транспорту відображається відповідний транспорт.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Якщо транспорт вже зайнятий, його не можна додати на будь який інший маршрут.
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Після того як маршрут переходить в статус завершення та дата відправки стає вчорашньою - транспорт стає вільним.
+
+## 🧾 Обробка помилок
+
+Якщо користувач отримає помилку з серверу при отримані даних, йому побуде відображатись відповідний компонент помилки.
+
+## 🧾 Покращення функціоналу
+
+1. Якщо маршрут вже почався - заборонити зміну транспорту або типу транспорту.
+2. Додати взаємодію з Map API та встановлювати міста інтерактивно і вираховувати динамічно дистанцію   
+
+## 🛠 Технології
+
+Додаток було створено з використанням таких технологій:
+
+- vue 3
+- typescript
+- flowbit
+- vite
+
+## Як користуватись
+
+Встановити всі необхідні залежності:
+
+```
+npm install or yarn install
+```
+
+Для запуску додатку потрібно ввести наступну команду:
+
+```
+npm run dev or yarn dev
+```
+
+Після запуску додатку він буде доступний за адресою http://localhost:5173/

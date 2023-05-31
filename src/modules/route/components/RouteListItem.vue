@@ -1,6 +1,6 @@
 <template>
     <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
+        <ul id="defaultTab" class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" data-tabs-toggle="#defaultTabContent" role="tablist">
             <li class="mr-2">
                 <button type="button" role="tab" :class="{ 'dark:text-blue-500': !showTransportTab }" class="inline-block p-4 rounded-tl-lg dark:bg-gray-800 dark:hover:bg-gray-700" @click="showTransportTab = false">Route</button>
             </li>
