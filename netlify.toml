@@ -1,0 +1,9 @@
+[context.production.environment]
+VITE_API_BASE_URL= "https://swpre9v8i3.execute-api.us-east-1.amazonaws.com/dev/"
+
+[context.staging.environment]
+VITE_API_BASE_URL= "https://swpre9v8i3.execute-api.us-east-1.amazonaws.com/dev/"
+
+# no API server exists for other branches, but code will still want a URL here so need to set a "default"
+[context.branch-deploy.environment]
+VITE_API_BASE_URL= "https://swpre9v8i3.execute-api.us-east-1.amazonaws.com/dev/"
