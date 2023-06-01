@@ -39,8 +39,9 @@ export const useRouteCreate = () => {
 
 	const createRoute = async () => {
 		loading.value = true;
+		const { transport, ...payload } = routeData.value;
 
-		const { isSuccess } = await routeGateway.createRoute(routeData.value)
+		const { isSuccess } = await routeGateway.createRoute(payload)
 
 		loading.value = false;
 		if (isSuccess) {

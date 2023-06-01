@@ -56,9 +56,9 @@ const deleteTransport = async () => {
 
     if (isSuccess) {
         notificationStore.send('Transport deleted successfully')
-        return
+    } else {
+        notificationStore.sendError('Transport has not been deleted')
     }
-    notificationStore.sendError('Transport has not been deleted')
 
     emits('updateList')
 }

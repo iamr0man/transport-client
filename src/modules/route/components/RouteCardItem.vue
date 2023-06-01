@@ -59,9 +59,9 @@ const deleteRoute = async () => {
 
   if (isSuccess) {
     notificationStore.send('Route deleted successfully')
-    return
+  } else {
+    notificationStore.sendError('Route has not been deleted')
   }
-  notificationStore.sendError('Route has not been deleted')
 
 	emits('updateList')
 }

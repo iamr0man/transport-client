@@ -80,10 +80,12 @@ const transportOptions = computed(() => {
         }))
 })
 
-watch(() => routeData.value.transportType, () => {
-    routeData.value = {
-        ...routeData.value,
-        transportId: null
-    };
+watch(() => routeData.value.transportType, (_, oldValue) => {
+    if (!!oldValue) {
+        routeData.value = {
+            ...routeData.value,
+            transportId: null
+        };
+    }
 })
 </script>

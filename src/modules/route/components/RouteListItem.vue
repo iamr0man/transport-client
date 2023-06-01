@@ -9,13 +9,13 @@
             </li>
         </ul>
         <RouteCardItem v-if="!showTransportTab" :route="route" @update-list="emits('updateList')" />
-        <TransportListItem v-else :transport="route.transport" @update-list="emits('updateList')" />
+        <TransportCardItem v-else :transport="route.transport" @update-list="emits('updateList')" />
     </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import TransportListItem from "@/modules/transport/components/TransportCardItem.vue";
+import TransportCardItem from "@/modules/transport/components/TransportCardItem.vue";
 import { IRoutes } from "@/modules/route/types/route.types.ts";
 import RouteCardItem from "@/modules/route/components/RouteCardItem.vue";
 
