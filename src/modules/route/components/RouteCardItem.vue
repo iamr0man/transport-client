@@ -14,7 +14,7 @@
             </li>
             <li class="flex space-x-2">
                 <svg class="flex-shrink-0 w-4 h-4 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                <span class="leading-tight">{{ new Date(route.sendingDate).toLocaleDateString() }} -> {{ new Date(route.deliveryDate).toLocaleDateString() }}</span>
+                <span class="leading-tight">{{ routeRangeDate }}</span>
             </li>
             <li class="flex space-x-2">
                 <svg class="flex-shrink-0 w-4 h-4 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import DangerButton from "@/shared/components/DangerButton.vue";
 import BaseButton from "@/shared/components/BaseButton.vue";
 import { IRoutes } from "@/modules/route/types/route.types.ts";
@@ -48,6 +49,8 @@ const props = defineProps<Props>()
 const emits = defineEmits<Events>()
 
 const notificationStore = useNotificationStore()
+
+const routeRangeDate = computed(() => `${new Date(props.route.sendingDate).toLocaleDateString()} -> ${new Date(props.route.deliveryDate).toLocaleDateString()}`)
 
 const goEditRoute = () => router.push(`/route-form/${props.route.id}`)
 

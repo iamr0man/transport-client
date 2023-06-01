@@ -5,7 +5,7 @@
         v-for="transport in transports"
         :key="transport.id"
         :transport="transport"
-        @update-list="getTransports"
+        @update-list="emits('getTransports')"
       />
     </div>
     <BaseButton class="mt-6" @click="goToCreateTransport">Create transport</BaseButton>
@@ -13,24 +13,24 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
 import TransportListItem from "@/modules/transport/components/TransportCardItem.vue";
-import { transportGateway } from "@/modules/transport/gateway/transport.gateway.ts";
-import { ITransports } from "@/modules/transport/types/transports.types.ts";
 import BaseButton from "@/shared/components/BaseButton.vue";
 import { useRouter } from "vue-router";
+import { ITransports } from "@/modules/transport/types/transports.types.ts";
+
+interface Props {
+	transports: ITransports.Model[];
+}
+
+interface Events {
+	(e: 'getTransports'): void
+}
+
+defineProps<Props>()
+const emits = defineEmits<Events>()
 
 const router = useRouter()
-const transports = ref<ITransports.Model[]>([])
-const getTransports = async () => {
-	const transportsResponse = await transportGateway.getTransports();
-
-	if (transportsResponse.isSuccess) {
-		transports.value = transportsResponse.response
-	}
-}
 
 const goToCreateTransport = () => router.push('/transport-form/create')
 
-onMounted(getTransports)
 </script>
